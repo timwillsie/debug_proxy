@@ -1,0 +1,24 @@
+{
+  "name": "debug_proxy",
+  "version": "1.0.0",
+  "description": "proxy um eine PHPStorm-Debug-Session auch ohne direkt Einfluss auf den Request starten zu können",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "proxy",
+    "debug",
+    "phpstorm"
+  ],
+  "author": "sievetm",
+  "license": "",
+  "dependencies": {
+    "body-parser": "^1.10.2",
+    "express": "^4.11.0",
+    "minimist": "^1.1.0",
+    "request": "^2.51.0",
+    "request-debug": "^0.1.1",
+    "form-urlencoded": "0.0.6"
+  }
+}
