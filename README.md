@@ -32,10 +32,13 @@ Nach dem Checkout/Cloning müssen die nötigen node-Module installiert werden:
             Um das Debugging in PHPStorm zu starten ist ein Cookie mit dem Namen "XDEBUG_SESSION" nötig.
             Der Wert den das Cookie haben muss (z.B. "PHPSTORM") muss man in PHPStorm einstellen.
                File -> Settings -> PHP -> Debug -> DBGp Proxy -> IDE Key
+
+        -u or --urlParams
+            URL-Parameter die an die URL bei jedem Request angeh�ngt wird.
         
         -h or --help
             Zeigt diese Hilfe an :)
             
 ###EXAMPLES
-        node index.js --debug -d http://127.0.0.1:8080 -p 9998 -c "XDEBUG_SESSION=PHPSTORM"
+        node index.js --debug -d http://127.0.0.1:8080 -p 9998 -c "XDEBUG_SESSION=PHPSTORM" -u "PARAM1=12334;PARAM2=5432"
         
