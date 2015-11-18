@@ -4,6 +4,7 @@ var express        = require("express"),
     debug          = argv.debug || false,
     destination    = argv.d || argv.destination || 'http://127.0.0.1:9999',
     cookie         = argv.c || argv.cookie || '',
+    urlParams	   = argv.u || argv.urlParams || '',
     port           = argv.p || argv.port || 9998,
     showHelp       = argv.h || argv.help || false,
     request        = require('request'),
@@ -44,6 +45,10 @@ app.use(function (req, res) {
 
     if (cookie !== '') {
         req = addCookieToRequest(req);
+    }
+
+    if (urlParams !== '') {
+       req = addUrlParamsToRequest(req);
     }
 
     var url = getApiUrl(req);
@@ -122,6 +127,22 @@ function addCookieToRequest (req) {
     return req;
 }
 
+function addUrlParamsToRequest(req) {
+    var params = urlParams.split(';');
+
+    if (params.length === 0) return req;
+
+    if (req.url.indexOf('?') === -1) {
+        req.url += "?"
+    } else {
+	req.url += "&"
+    }
+
+    req.url += params.join('&');
+
+    return req;
+}
+
 /**
  * Liefert die Ziel-URL für einen Request
  *
@@ -169,6 +190,9 @@ function printUsageAndExit () {
     console.log("       Um das Debugging in PHPStorm zu starten ist ein Cookie mit dem Namen 'XDEBUG_SESSION' nötig.");
     console.log("       Der Wert den das Cookie haben muss (z.B. 'PHPSTORM') muss man in PHPStorm einstellen.");
     console.log("          File -> Settings -> PHP -> Debug -> DBGp Proxy -> IDE Key");
+    console.log("");
+    console.log("   -u or --urlParams");
+    console.log("       URL-Parameter die an die URL bei jedem Request angehängt wird.");
     console.log("");
     console.log("   -h or --help");
     console.log("       Zeigt diese Hilfe an :)");
